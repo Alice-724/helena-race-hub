@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import { StudentDemo } from '@/components/student-demo';
 import heroImage from '@/assets/racing-hero.jpg';
 import cockpitImage from '@/assets/racing-cockpit.jpg';
+import { TireScrollbar } from '@/components/tire-scrollbar';
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
@@ -24,12 +25,13 @@ function Index() {
   const [project, setProject] = useState<'student' | 'app' | null>(null);
   const [menu, setMenu] = useState(false);
   return <>
+    <TireScrollbar />
     <header className="site-header sticky top-0 z-30"><div className="container-wide flex h-full items-center justify-between">
       <a href="#home" className="wordmark" aria-label="Alice Helena home">ALICE<span>.</span></a>
       <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">{['About', 'Projects', 'Skills', 'Contact'].map(n => <a key={n} href={`#${n.toLowerCase()}`} className="nav-link">{n}</a>)}</nav>
       <div className="flex items-center gap-2"><Button asChild variant="pitlane" size="sm"><a href="/documents/alice-helena-resume.pdf" target="_blank" rel="noreferrer">Resume <ArrowUpRight /></a></Button><Button className="md:hidden" variant="ghost" size="icon" aria-label={menu ? 'Close navigation' : 'Open navigation'} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</Button></div>
     </div>{menu && <nav className="md:hidden bg-background border-b border-border flex justify-around py-5" aria-label="Mobile navigation">{['About','Projects','Skills','Contact'].map(n => <a className="nav-link" key={n} href={`#${n.toLowerCase()}`} onClick={() => setMenu(false)}>{n}</a>)}</nav>}</header>
-    <main>
+    <main id="portfolio-content">
       <section id="home" className="hero">
         <img className="hero-image" src={heroImage} alt="Red open-wheel racing car on a mountain circuit at sunset" width={1920} height={1024} fetchPriority="high" />
         <div className="container-wide hero-content"><div className="technical flex items-center gap-3 text-muted-foreground"><span className="status-dot" /> Computer science student / 2026–2029</div>
