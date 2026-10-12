@@ -40,7 +40,7 @@ function Index() {
           <div className="flex flex-wrap gap-3 mt-8"><Button asChild variant="racing" size="lg"><a href="#projects">Explore my projects <ArrowDownRight /></a></Button><Button asChild variant="pitlane" size="lg"><a href="mailto:helenaalice725@gmail.com">Let's connect <ArrowUpRight /></a></Button></div>
           <a href="#about" className="inline-flex items-center gap-3 technical text-muted-foreground mt-12"><ArrowDown size={13} /> The story behind the drive</a>
         </div>
-        <div className="hero-coordinate technical"><div className="flex justify-end gap-2 items-center mb-2"><Flag size={12} /> Trichy, India</div><span className="text-muted-foreground">10.7905° N / 78.7047° E</span></div>
+        <div className="hero-coordinate technical"><div className="flex justify-end gap-2 items-center mb-2"><Flag size={12} /> Trichy, India</div></div>
       </section>
       <div className="skill-strip"><div className="container-wide skill-strip-inner">{['PYTHON', 'C / C++', 'SQL', 'DATA ANALYSIS', 'MOTORSPORT', 'CYBERSECURITY'].map((s,i) => <span key={s} className="flex items-center gap-7">{i > 0 && <i />}{s}</span>)}</div></div>
       <section id="about" className="section"><div className="container-wide about-grid">
