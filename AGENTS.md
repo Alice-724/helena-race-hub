@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep portfolio sections on the index route with anchor navigation; project viewers use accessible dialogs so visitors stay in the portfolio.
+- The student project is a session-only browser adaptation of the uploaded C source, not a shared student-record service; keep demo records isolated in component state.
+- Use global semantic design tokens and shared Button variants for presentation, so the motorsport visual system stays consistent.
+- Serve generated resume and cleaned C source through public/documents; show C source through a raw asset import for an offline-capable viewer.
