@@ -113,19 +113,17 @@
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 html.tire-scroll-enabled { scrollbar-width: none; }
 html.tire-scroll-enabled::-webkit-scrollbar { display: none; }
-.tire-scrollbar { position: fixed; z-index: 40; top: 94px; bottom: 18px; right: 5px; width: 36px; cursor: grab; touch-action: none; user-select: none; }
+.tire-scrollbar { position: fixed; z-index: 40; left: 18px; right: 18px; bottom: 10px; height: 36px; cursor: grab; touch-action: none; user-select: none; }
 .tire-scrollbar[hidden] { display: none; }
-.tire-scrollbar::before { content: ''; position: absolute; top: 18px; bottom: 18px; left: 50%; width: 2px; background: var(--border); opacity: .6; }
+.tire-scrollbar::before { content: ''; position: absolute; left: 18px; right: 18px; top: 50%; height: 2px; margin-top: -1px; background: var(--border); opacity: .6; }
 .tire-scrollbar:active { cursor: grabbing; }
 .tire-scrollbar:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 4px; }
 .tire-scrollbar img { position: relative; display: block; width: 36px; height: 36px; object-fit: contain; will-change: transform; pointer-events: none; }
 @media (max-width: 640px) {
- .tire-scrollbar { width: 24px; right: 2px; top: 82px; bottom: 12px; }
+ .tire-scrollbar { left: 12px; right: 12px; bottom: 8px; height: 24px; }
  .tire-scrollbar img { width: 24px; height: 24px; }
- .tire-scrollbar::before { top: 12px; bottom: 12px; }
- html.tire-scroll-enabled .container-wide { width: calc(100% - 56px); margin-left: 20px; margin-right: 36px; }
- html.tire-scroll-enabled .skill-strip-inner { width: max-content; }
- html.tire-scroll-enabled .hero-coordinate { right: 36px; }
+ .tire-scrollbar::before { left: 12px; right: 12px; }
+ html.tire-scroll-enabled .hero-coordinate { bottom: 58px; }
 }
 body { font-family: var(--font-body); letter-spacing: 0; }
 button, a, input { -webkit-tap-highlight-color: transparent; }
