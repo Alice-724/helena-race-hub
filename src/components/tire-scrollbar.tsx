@@ -17,7 +17,11 @@ export function TireScrollbar() {
       const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
       track.hidden = max <= 0;
       track.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
-      wheel.style.transform = `translateY(${progress * (track.clientHeight - wheel.clientHeight)}px) rotate(${motion.matches ? 0 : window.scrollY / 2}deg)`;
+      const travel = track.clientWidth - wheel.clientWidth;
+      const x = progress * travel;
+      // Roll without slipping: one full turn every (pi * diameter) px of travel.
+      const rotation = motion.matches ? 0 : (x / (wheel.clientWidth / 2)) * (180 / Math.PI);
+      wheel.style.transform = `translateX(${x}px) rotate(${rotation}deg)`;
       frame = 0;
     };
     const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
@@ -38,12 +42,12 @@ export function TireScrollbar() {
     };
   }, []);
 
-  const scrollToPointer = (clientY: number) => {
+  const scrollToPointer = (clientX: number) => {
     const track = rail.current;
     const wheel = tire.current;
     if (!track || !wheel) return;
     const bounds = track.getBoundingClientRect();
-    const progress = Math.min(1, Math.max(0, (clientY - bounds.top - wheel.clientHeight / 2) / (bounds.height - wheel.clientHeight)));
+    const progress = Math.min(1, Math.max(0, (clientX - bounds.left - wheel.clientWidth / 2) / (bounds.width - wheel.clientWidth)));
     window.scrollTo({ top: progress * (document.documentElement.scrollHeight - window.innerHeight), behavior: 'instant' });
   };
 
@@ -54,7 +58,7 @@ export function TireScrollbar() {
     tabIndex={0}
     aria-label="Portfolio scroll position"
     aria-controls="portfolio-content"
-    aria-orientation="vertical"
+    aria-orientation="horizontal"
     aria-valuemin={0}
     aria-valuemax={100}
     aria-valuenow={0}
@@ -62,10 +66,10 @@ export function TireScrollbar() {
       if (event.button !== 0) return;
       event.currentTarget.setPointerCapture(event.pointerId);
       event.currentTarget.focus({ preventScroll: true });
-      scrollToPointer(event.clientY);
+      scrollToPointer(event.clientX);
     }}
     onPointerMove={event => {
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) scrollToPointer(event.clientY);
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) scrollToPointer(event.clientX);
     }}
     onPointerUp={event => {
       if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
@@ -73,6 +77,7 @@ export function TireScrollbar() {
     onKeyDown={event => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const targets: Record<string, number> = {
+        ArrowRight: window.scrollY + 80, ArrowLeft: window.scrollY - 80,
         ArrowDown: window.scrollY + 80, ArrowUp: window.scrollY - 80,
         PageDown: window.scrollY + window.innerHeight, PageUp: window.scrollY - window.innerHeight,
         Home: 0, End: max,
