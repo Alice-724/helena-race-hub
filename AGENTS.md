@@ -13,3 +13,4 @@
 - The student project is a session-only browser adaptation of the uploaded C source, not a shared student-record service; keep demo records isolated in component state.
 - Use global semantic design tokens and shared Button variants for presentation, so the motorsport visual system stays consistent.
 - Serve generated resume and cleaned C source through public/documents; show C source through a raw asset import for an offline-capable viewer.
+- Keep the tire scrollbar in a browser-effect-driven component with pointer and keyboard scrolling, and honor reduced motion to preserve accessibility.
