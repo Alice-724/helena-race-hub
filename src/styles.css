@@ -181,6 +181,8 @@ button, a, input { -webkit-tap-highlight-color: transparent; }
 .footer { border-top: 1px solid var(--border); padding-block: 26px; }
 .checker { width: 33px; height: 20px; background: var(--checkered); background-size: 12px 12px; transform: skew(-18deg); opacity: .6; }
 .project-dialog { max-width: 900px; max-height: 88dvh; overflow-y: auto; width: calc(100% - 28px); }
+.project-dialog > * { min-width: 0; max-width: 100%; overflow-wrap: break-word; }
+.project-dialog .demo-table { min-width: 560px; }
 .demo-tabs { display: flex; gap: 5px; border-bottom: 1px solid var(--border); padding-bottom: 12px; overflow-x: auto; }
 .demo-form { display: grid; gap: 16px; margin-block: 18px; }
 .demo-field { display: grid; gap: 7px; font-size: 12px; color: var(--muted-foreground); }
